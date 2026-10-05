@@ -2,7 +2,9 @@ import {createGame,moveDrone,release,step,continueGame} from './game.js';
 import {GestureInput} from './input.js';
 import {GameRenderer} from './render.js';
 import {loadSession,saveSession} from './persistence.js';
+import {prepareOffline} from './offline.js';
 const $=id=>document.getElementById(id),canvas=$('game');
+prepareOffline($('offline-status'));
 let storage;
 try{storage=window.localStorage;}catch{storage=null;}
 const loaded=loadSession(storage);

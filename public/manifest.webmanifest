@@ -1,0 +1,11 @@
+{
+ "name":"ムダ連鎖 / Muda Rensa",
+ "short_name":"ムダ連鎖",
+ "lang":"ja",
+ "start_url":"/",
+ "scope":"/",
+ "display":"standalone",
+ "background_color":"#101c2b",
+ "theme_color":"#101c2b",
+ "icons":[{"src":"/icons/drone.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}

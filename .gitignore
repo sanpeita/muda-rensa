@@ -10,3 +10,4 @@ output/
 .claude/
 agent/
 skills-lock.json
+.netlify/

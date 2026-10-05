@@ -21,10 +21,19 @@
 - ページ初期化時に非対応版を挿入して起動：説明を表示し、元の文字列を上書きしない。「はじめから」を選ぶとHP3000の新規ゲームへ戻る。実行中の外部書換えは通常のpagehide保存で置換されるため、破損検証は起動前のデータに対して行った。
 - `npm run build` 成功。操作スクリプト：`output/playwright/resume-check.js`（Git除外）。
 
+## 2026-10-05 / Slice 3
+
+- 配信用distにHTML、JS/CSS、Three.js、manifest、自作SVG・iPhone用180px PNG、ライセンスを同梱。個人プロフィール、企画文書、Skill Pack、node_modulesは配信対象外。
+- PC ChromiumのService Workerが有効になり、全14アセットのキャッシュと「通信なしで起動できます」を確認。
+- Playwrightのネットワークをofflineへ切替後、再読込、実マウス入力での吸引と通常放出、再読込後の復元に成功。HP2835.2、スコア2245、放出1回を保持。JavaScriptエラー0、393×852で横はみ出しなし。
+- offline状態を保った同じセッションで急回転からの放出を繰り返し、通常の5分設定で撃破。残り1:53、HP0 / 3000、スコア39,740。時計・HPのテスト用変更なし。PCの自動マウス操作であり、iPhoneの実指入力ではない。
+- Service Worker更新はskipWaitingを使わず、プレイ中に版を強制切替しない。初回取得の失敗・準備確認の時間切れは未完了表示にする。
+- `npm test`：27件pass。`npm run build`成功。証拠は `output/playwright/offline-check.js`、`offline-mobile.png`、`play-progress.png`（Git除外）。
+- Netlify向け設定はpublishをdistに限定。HTTPSへの実配信は未実施。
+
 ## 未実施
 
 - 保存・オフラインを加えた後の本人最終確認。
-- Service Workerとオフライン起動。Slice 3で実装する。
 - iPhone 16（本人回答）の実機タッチ入力、機内モードの起動と完走。
 - 本人の最終レビュー、学習振り返りとapp map。
 - push、外部公開、Devpost提出。
