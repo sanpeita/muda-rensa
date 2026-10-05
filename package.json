@@ -1,0 +1,5 @@
+{
+  "name": "muda-rensa", "version": "0.1.0", "private": true, "type": "module",
+  "scripts": {"dev":"node scripts/serve.mjs", "preview":"node scripts/serve.mjs --dist", "build":"node scripts/build.mjs", "test":"node --test tests/*.test.mjs"},
+  "dependencies": {"three":"0.186.1"}
+}

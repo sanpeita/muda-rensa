@@ -1,0 +1,12 @@
+/devpost/learner-profile.md
+.env
+.env.*
+!.env.example
+node_modules/
+dist/
+output/
+.playwright-cli/
+.agents/
+.claude/
+agent/
+skills-lock.json

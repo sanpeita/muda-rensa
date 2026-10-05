@@ -1,0 +1,1 @@
+export const CONFIG={limitSeconds:300,bounds:14,speed:1,passRadius:1.05,suctionRadius:5.7,suctionSeconds:1.4,respawnSeconds:12,energyCap:180,targetHp:3000,baseDamage:1.6,hyperMultiplier:2.8,projectileSpeed:18,projectileLife:2.6};
