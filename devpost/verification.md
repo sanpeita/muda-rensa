@@ -36,4 +36,4 @@
 - 保存・オフラインを加えた後の本人最終確認。
 - iPhone 16（本人回答）の実機タッチ入力、機内モードの起動と完走。
 - 本人の最終レビュー、学習振り返りとapp map。
-- push、外部公開、Devpost提出。
+- Git push、Devpost提出。HTTPSテスト版は2026-10-05に本人承認を受けて公開済み。配信先での証拠は [deployment.md](deployment.md)。

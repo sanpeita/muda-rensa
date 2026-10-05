@@ -4,6 +4,8 @@
 
 ## ローカル起動
 
+**iPhone向けHTTPSテスト版：[ムダ連鎖を遊ぶ](https://muda-rensa-iphone-test.netlify.app/)**。2026-10-05に本人承認を受けて公開。配信記録は [deployment.md](devpost/deployment.md)。
+
 Node.js 22以上で、このフォルダから次を実行する。
 
 ```powershell
@@ -43,7 +45,7 @@ npm run preview
 
 ## iPhone 16での最終確認（未実施）
 
-初回取得にはHTTPS配信が必要。PCのlocalhostはiPhoneから直接開けない。外部公開前に本人の許可を取り、配信対象を `dist/` のゲーム一式に限定する。
+初回取得にはHTTPS配信が必要。PCのlocalhostはiPhoneから直接開けない。本人承認済みのHTTPSテスト版で試す。配信対象は `dist/` のゲーム一式。
 
 1. HTTPSのゲームURLをSafariで開く。
 2. 共有から「ホーム画面に追加」。Webアプリとして開く選択肢がある場合は有効にする。[Appleの手順](https://support.apple.com/ja-jp/guide/iphone/iphea86e5236/ios)。
@@ -56,7 +58,7 @@ Safariのタブとホーム画面版の保存が共有されるとは仮定せ�
 
 ## 現在地
 
-プレイ、端末内の保存・再開、Service Workerによるオフライン起動を実装済み。27件のロジックテストとビルド、PCブラウザで通常／ハイパー放出・撃破・続行・復元、通信遮断後の再起動・放出・復元を確認。本人の序盤プレイ確認済み。対象端末はiPhone 16、実機・機内モードと最終レビューは未検証。公開、push、Devpost提出は未実施。詳細は [検証記録](devpost/verification.md)。
+プレイ、端末内の保存・再開、Service Workerによるオフライン起動を実装済み。27件のロジックテストとビルド、PCブラウザで通常／ハイパー放出・撃破・続行・復元、通信遮断後の再起動・放出・復元を確認。本人の序盤プレイ確認済み。HTTPSテスト版は本人承認を受けて公開済み。対象端末はiPhone 16、実機・機内モードと最終レビューは未検証。Git pushとDevpost提出は未実施。詳細は [検証記録](devpost/verification.md)。
 
 企画・要件・設計・進捗は `devpost/`。個人の学習プロフィール、導入したSkill Pack、依存・生成物はGit追跡対象外。
 
