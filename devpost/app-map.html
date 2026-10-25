@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ムダ連鎖 — App Map</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { margin: 0 auto; max-width: 60rem; padding: 2rem 1.25rem 4rem;
+         font-family: system-ui, -apple-system, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+         line-height: 1.7; background: #0f1220; color: #e8eaf2; }
+  h1 { font-size: 1.6rem; margin: 0 0 .25rem; letter-spacing: .02em; }
+  h2 { font-size: 1.15rem; margin: 2.25rem 0 .75rem; padding-bottom: .35rem; border-bottom: 1px solid #2a2f45; }
+  .lede { color: #aab0c8; margin: 0 0 1.5rem; }
+  code, .path { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .92em; }
+  code { background: #1b2035; padding: .1em .35em; border-radius: .25em; }
+  pre { background: #1b2035; padding: .85rem 1rem; border-radius: .5rem; overflow-x: auto; }
+  pre code { background: none; padding: 0; }
+  ul, ol { padding-left: 1.4em; }
+  li { margin: .35rem 0; }
+  .card { background: #161a2c; border: 1px solid #262c44; border-radius: .75rem; padding: 1rem 1.15rem; margin: 1rem 0; }
+  .muted { color: #98a0bb; font-size: .92rem; }
+  figure { margin: 1.25rem 0; }
+  svg { max-width: 100%; height: auto; background: #12162a; border: 1px solid #262c44; border-radius: .75rem; }
+  svg text { fill: #e8eaf2; font-family: inherit; }
+  svg .box { fill: #1d2440; stroke: #4a5680; stroke-width: 1.5; rx: 10; }
+  svg .hot { fill: #2a2140; stroke: #d8a13a; }
+  svg .arrow { stroke: #7d88b5; stroke-width: 2; fill: none; marker-end: url(#a); }
+  svg .lbl { font-size: 13px; }
+  svg .sub { font-size: 11px; fill: #aab0c8; }
+  details { margin: .75rem 0; }
+  summary { cursor: pointer; font-weight: 600; }
+  a { color: #8fb6ff; }
+  .tag { display: inline-block; font-size: .78rem; padding: .1rem .5rem; border-radius: 999px;
+         background: #24304f; color: #b9c6ee; margin-left: .4rem; vertical-align: middle; }
+</style>
+</head>
+<body>
+
+<h1>ムダ連鎖 — App Map</h1>
+<p class="lede">コードの地図。遊びながら「どこを触れば何が変わるか」を戻ってこられるようにしたものです。このページ単体で動きます（外部読み込みなし）。</p>
+
+<h2>このアプリは何か</h2>
+<p>指でドローンを動かして街の物を吸収し、指を止めて周囲を吸い込み、押したまま素早く円を描くとハイパーが成立、離すとカラーボールを放ってターゲットを削る。5分で一区切り、進行は端末の<code>localStorage</code>に保存され、Service Workerで通信なし起動もできる。</p>
+<div class="card">
+  <strong>主要な部品</strong>
+  <ul>
+    <li><span class="path">src/config.js</span> — 数値の正本（制限時間・半径・ダメージ・HPなど）</li>
+    <li><span class="path">src/game.js</span> — ルール。移動・吸収・放出・ダメージ・時間</li>
+    <li><span class="path">src/input.js</span> — 指の「移動 / 静止 / 急回転」判定</li>
+    <li><span class="path">src/render.js</span> — Three.js の描画と演出</li>
+    <li><span class="path">src/main.js</span> — 入力・状態・描画・HUD・保存の配線</li>
+    <li><span class="path">src/persistence.js</span> — 保存・復元とデータ検証</li>
+  </ul>
+</div>
+
+<h2>1つの行動が、どこを通って画面に出るか</h2>
+<figure>
+<svg viewBox="0 0 860 330" role="img" aria-labelledby="diagtitle diagdesc">
+  <title id="diagtitle">指で円を描いてハイパー放出する流れ</title>
+  <desc id="diagdesc">指の円運動が input.js で検出され、main.js の onRelease から game.js の release を呼び、ダメージと弾が生まれ、HUDのHP表示が変わる。</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#7d88b5"/>
+    </marker>
+  </defs>
+
+  <rect class="box" x="20" y="40" width="150" height="72"/>
+  <text class="lbl" x="95" y="70" text-anchor="middle">指で円を描く</text>
+  <text class="sub" x="95" y="92" text-anchor="middle">画面の操作</text>
+
+  <rect class="box hot" x="205" y="40" width="185" height="72"/>
+  <text class="lbl" x="297" y="66" text-anchor="middle">detectHyper()</text>
+  <text class="sub" x="297" y="88" text-anchor="middle">input.js（900msの窓）</text>
+
+  <rect class="box" x="425" y="40" width="185" height="72"/>
+  <text class="lbl" x="517" y="66" text-anchor="middle">onRelease(hyper)</text>
+  <text class="sub" x="517" y="88" text-anchor="middle">main.js の配線</text>
+
+  <rect class="box hot" x="645" y="40" width="195" height="72"/>
+  <text class="lbl" x="742" y="66" text-anchor="middle">release(s, hyper)</text>
+  <text class="sub" x="742" y="88" text-anchor="middle">game.js</text>
+
+  <rect class="box" x="425" y="190" width="185" height="72"/>
+  <text class="lbl" x="517" y="216" text-anchor="middle">damage(s, amount)</text>
+  <text class="sub" x="517" y="238" text-anchor="middle">game.js</text>
+
+  <rect class="box" x="645" y="190" width="195" height="72"/>
+  <text class="lbl" x="742" y="216" text-anchor="middle">HUD #hp / #score</text>
+  <text class="sub" x="742" y="238" text-anchor="middle">main.js の毎フレーム更新</text>
+
+  <path class="arrow" d="M170 76 H200"/>
+  <path class="arrow" d="M390 76 H420"/>
+  <path class="arrow" d="M610 76 H640"/>
+  <path class="arrow" d="M742 112 V185"/>
+  <path class="arrow" d="M610 226 H640"/>
+
+  <text class="sub" x="20" y="150">ハイパー判定は「速さ」ではなく</text>
+  <text class="sub" x="20" y="168">1周ぶんの角度と丸さで見ている。</text>
+  <text class="sub" x="20" y="290">保存は別経路: main.js の persist() → persistence.js の saveSession()</text>
+</svg>
+<figcaption class="muted">点線ではない実線はすべて実在の呼び出し。色付きの箱が「変えたいときに開く場所」。</figcaption>
+</figure>
+
+<h2>参照ルート（3か所）<span class="tag">未ツアー・参照用</span></h2>
+<p class="muted">このルートは学習ツアーとして一緒に歩いた記録ではなく、コードから作った参照用の道順です。</p>
+<ol>
+  <li>
+    <strong>入力の判定</strong> — <span class="path">src/input.js</span> の <code>detectHyper(points)</code>。
+    <code>ROTATION_WINDOW_MS = 900</code> の窓の中で、丸さ（偏差30%以内）・合計角度（1.8π以上）・一方向性（85%以上）を見る。
+    <code>GestureInput#update()</code> が 350ms の静止を <code>charging</code> に変え、そこから円のサンプルを集める。
+  </li>
+  <li>
+    <strong>配線</strong> — <span class="path">src/main.js</span> の <code>new GestureInput(canvas, { onRelease(hyper) { ... } })</code>。
+    離した瞬間に <code>release(state, hyper)</code> を呼び、<code>persist()</code> で保存する。
+  </li>
+  <li>
+    <strong>ルールと結果</strong> — <span class="path">src/game.js</span> の <code>release(s, hyper)</code> → <code>damage(s, amount)</code>。
+    与ダメージは <code>energy × baseDamage × (hyper ? hyperMultiplier : 1)</code>。数値は <span class="path">src/config.js</span> の <code>CONFIG</code> に集約。
+  </li>
+</ol>
+
+<h2>ここを変えたい、と思ったら</h2>
+<ul>
+  <li><strong>ハイパーが成立しにくい / しやすい</strong> → <span class="path">src/input.js</span> の <code>ROTATION_WINDOW_MS</code>、<code>detectHyper</code> 内の <code>1.8</code>（必要角度）と <code>0.3</code>（丸さの許容）。</li>
+  <li><strong>ゲームの難易度・テンポ</strong> → <span class="path">src/config.js</span> の <code>limitSeconds</code>・<code>targetHp</code>・<code>energyCap</code>・<code>baseDamage</code>・<code>hyperMultiplier</code>。</li>
+  <li><strong>吸収の手触り</strong> → <span class="path">src/game.js</span> の <code>moveDrone()</code> 内 <code>passRadius</code> 判定と <code>collect()</code>、吸引半径は <code>step()</code> の <code>suctionRadius</code>。</li>
+  <li><strong>見た目・演出</strong> → <span class="path">src/render.js</span> の <code>GameRenderer</code>（<code>update()</code> が状態を受け取る）。</li>
+  <li><strong>HUDの表示文言</strong> → <span class="path">index.html</span> の要素と <span class="path">src/main.js</span> の <code>$('mode').textContent = ...</code> 付近。</li>
+  <li><strong>保存のタイミング</strong> → <span class="path">src/main.js</span> の <code>frame()</code> 内 <code>now - lastSave &gt;= 1000</code>。</li>
+</ul>
+
+<h2>再利用できる型（この作品で実際に起きたこと）</h2>
+<div class="card">
+  <p><strong>型: 「端から端まで動く状態」を保ったまま、目標に届くまで判定を調整する。</strong></p>
+  <p>円運動の判定は、数学的には正しい点列で成立しても、実ブラウザでは<b>複数の指位置が1つのイベントにまとめられて届く</b>ため取りこぼした。
+  そこで <code>getCoalescedEvents()</code> を時刻順に読む修正が入り、回帰テスト
+  <span class="path">tests/input.test.mjs</span> の
+  <code>quick circles qualify clockwise and counterclockwise…</code> と
+  <code>circle during charge locks hyper once and never changes movement direction</code> が守っている。</p>
+  <p>さらに実プレイの録画では、円が<b>900ms の窓に収まらない速度</b>だと成立しないことが実測で分かった（同じ図形でも遅いと不成立）。
+  つまり「テストが通る」と「実際に気持ちよく決まる」は別で、<b>E2Eで動かして初めて分かる条件</b>が残る。</p>
+  <p class="muted">別の作品でも同じやり方が使える: 判定ロジックは単体テストで固め、<b>実入力の粒度（まとめ・遅延・端末差）</b>だけを実機・実ブラウザで確かめる。範囲を広げずに品質を上げたいときは、この「単体で固める層」と「実入力で確かめる層」を分けて持つ。</p>
+</div>
+
+<h2>もう一度動かす</h2>
+<pre><code>npm install
+npm run dev      # http://localhost:4173
+npm test         # 27件のロジックテスト
+npm run build    # 配信用 dist/ を生成
+npm run preview  # ビルド済みを確認</code></pre>
+<p class="muted">この地図はスナップショットです。コードが進むとずれます。基準コミット: <code id="commit">f74a569</code>（devpost のチェックリスト更新時点）。</p>
+
+<details>
+  <summary>この地図の作り方（更新するとき）</summary>
+  <ul>
+    <li>図の箱は「関数が実在するか」を <span class="path">src/</span> で確認してから増減する。推測で層を足さない。</li>
+    <li>ファイル名・関数名を変えたら、このページの <code>path</code> と <code>code</code> を同じコミットで直す。</li>
+    <li>外部CSS・JS・フォント・解析は入れない（オフラインで開ける状態を保つ）。</li>
+  </ul>
+</details>
+
+</body>
+</html>
