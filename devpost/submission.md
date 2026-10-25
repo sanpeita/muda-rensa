@@ -76,3 +76,32 @@ AIと関わる時間が多いからこそ、AIでつくったもので時間を�
 | Try it out | `https://muda-rensa-iphone-test.netlify.app/` |
 | Video demo URL | YouTube等への**限定公開**アップロード後のURL（Release直リンク `https://github.com/sanpeita/muda-rensa/releases/download/v0.1.0/muda-rensa-demo-captioned.mp4` は動画欄の検証を通らない可能性が高い） |
 | Thumbnail | `output/thumbnail.png`（1200×800 / 3:2 / 500KB未満） |
+
+## About the project（Project Story）下書き — 本人回答の英訳＋事実
+
+> 注意: 1〜2節は本人の回答の翻訳。3節以降はプロジェクトの事実。最終的な文面は本人が確定する。
+
+```markdown
+## Inspiration
+I spend a lot of time with AI. So I wanted to spend my idle time on something AI built: a game for the five minutes you wait for a train.
+
+## What it does
+Drag to fly a drone over a miniature city and absorb whatever you pass. Stop your finger and it becomes a cyclone that pulls in everything nearby. Hold and draw a quick circle to charge HYPER, then release to fire vivid orbs at the target. One session lasts five minutes; drop the target's HP to zero and you win.
+
+## How we built it
+- Planned first with the Devpost Learn skill pack (1-start → 6-ship). scope.md, prd.md and spec.md are in the public repo.
+- Vanilla JavaScript + Three.js 0.186.1, bundled locally — no runtime CDN.
+- Gestures live in src/input.js: a 350 ms still finger charges, and a quick circle inside a 900 ms window triggers HYPER.
+- Progress autosaves to localStorage every second and on key events, so closing the tab resumes the same run.
+- A Service Worker caches the app shell; after the first visit it boots with no network (verified on an iPhone 16 in airplane mode).
+- 27 logic tests cover input detection, simulation and save/restore.
+
+## Challenges
+Browsers merge high-frequency finger positions into a single pointermove event, so a fast circle could be missed. Reading getCoalescedEvents() in timestamp order fixed it — the pure-geometry test passed even while the real browser still failed.
+
+## What we learned
+Even a super casual game gets its spice from the fact that the player is bored. Also, "tests pass" and "it feels right" are different things: when recording the demo, a circle drawn too slowly never triggered HYPER, because the turn has to finish inside the 900 ms window.
+
+## What's next
+Nothing for this proof of concept — it ends at a playable five-minute loop.
+```
