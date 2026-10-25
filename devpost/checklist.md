@@ -52,13 +52,16 @@ Slice 1の機械検証は2026-10-05に完了。19件pass、ビルド成功、実
 
 ## Final Review
 
-- [ ] Final review complete — feedback resolved and learner confirms ready to ship
+- [x] Final review complete — feedback resolved and learner confirms ready to ship（2026-10-25 15:39 JST、本人がDevpostへ提出して完了を明示。追加の修正要望はなし）
+- [ ] Code Tour and App Map（下記）は提出後に実施
 
 ## Code Tour and App Map
 
 - [ ] Learning activity complete — 急回転検出を早く試し、E2Eを維持して調整する流れを実際のコードと検証結果で短く確認。
 - [ ] Optional edit and transfer reflection addressed — 振り返りは任意。本人が回答した事実だけを記録。
 - [ ] `devpost/app-map.html` generated from finished code, checked, and shown, including a project-grounded practice to reuse
+
+**状態（2026-10-25）**: `devpost/app-map.html` は**生成・公開リポジトリへ commit 済み**（`5861b94`、公開URL https://github.com/sanpeita/muda-rensa/blob/main/devpost/app-map.html ）。本人への提示とツアー・振り返りは未実施のため、上の2項目は未チェックのまま。提出は完了しており、学習ラップアップは締切後でも実施できる。
 
 Activity and evidence: 未実施。
 Route and stops: 完成した入力→進行→描画の実ファイルを確認してから記録。

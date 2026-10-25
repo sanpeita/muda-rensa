@@ -58,7 +58,7 @@ Safariのタブとホーム画面版の保存が共有されるとは仮定せ�
 
 ## 現在地
 
-プレイ、端末内の保存・再開、Service Workerによるオフライン起動を実装済み。27件のロジックテストとビルド、PCブラウザで通常／ハイパー放出・撃破・続行・復元、通信遮断後の再起動・放出・復元を確認。本人の序盤プレイ確認済み。HTTPSテスト版は本人承認を受けて公開済み。対象端末はiPhone 16、実機・機内モードは検証済み（2026-10-12）。**公開リポジトリは https://github.com/sanpeita/muda-rensa 。Devpost提出は未実施**（デモ動画と提出記録は [devpost/submission.md](devpost/submission.md)）。詳細は [検証記録](devpost/verification.md)。
+プレイ、端末内の保存・再開、Service Workerによるオフライン起動を実装済み。27件のロジックテストとビルド、PCブラウザで通常／ハイパー放出・撃破・続行・復元、通信遮断後の再起動・放出・復元を確認。本人の序盤プレイ確認済み。HTTPSテスト版は本人承認を受けて公開済み。対象端末はiPhone 16、実機・機内モードは検証済み（2026-10-12）。**公開リポジトリは https://github.com/sanpeita/muda-rensa 。2026-10-25 15:39 JST に Devpost「Build With AI: Basics」へ提出済み**（公開ページ https://devpost.com/software/muda-rensa ）。デモ動画（67.6秒・字幕入り）と提出の記録は [devpost/submission.md](devpost/submission.md)。ナレーション入り版は後日うのっちchで公開予定（Devpostの動画を差し替える場合は締切 2026-10-27 06:00 JST まで）。詳細は [検証記録](devpost/verification.md)。
 
 企画・要件・設計・進捗は `devpost/`。個人の学習プロフィール、導入したSkill Pack、依存・生成物はGit追跡対象外。
 

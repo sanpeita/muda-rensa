@@ -9,10 +9,26 @@
 | 空フォルダから開始 | 済 | 2026-09-26 にSkill Pack導入から開始 |
 | Devpost Learn Skill Pack を使用 | 済 | `.agents/skills/1-start`〜`6-ship`（リポジトリには含めない: `.gitignore`） |
 | 計画文書（scope/prd/spec） | 済 | `devpost/scope.md`・`devpost/prd.md`・`devpost/spec.md`（すべて status: approved） |
-| 公開リポジトリ | **済** | https://github.com/sanpeita/muda-rensa （public・未認証200で確認） |
-| デモ動画 1〜3分 | **作成済（音声なし）** | `output/muda-rensa-demo-captioned.mp4`（67.6秒 / 1280×720 / H.264 / 字幕入り） |
-| 説明文（何を・誰に・学び） | 本人の回答を受領 | 下記「提出文の材料」 |
-| Devpost提出 | 未 | — |
+| 公開リポジトリ | **済** | https://github.com/sanpeita/muda-rensa （public・未認証200で確認 / MIT LICENSE 検出済み） |
+| デモ動画 1〜3分 | **済** | YouTube 限定公開 `DlAE2RF0670`（「ムダ連鎖 — Muda Rensa (Devpost Learn demo)」/ 67.6秒・字幕入り・無音） |
+| 説明文（何を・誰に・学び） | **済** | 本人の回答をもとに英訳・整形して提出 |
+| Devpost提出 | **済（2026-10-25 15:39 JST）** | https://devpost.com/software/muda-rensa |
+
+## 提出結果（2026-10-25）
+
+- 提出先: Build With AI: Basics（`learn-ai-basics.devpost.com`）
+- 公開ページ: https://devpost.com/software/muda-rensa
+- 動画: YouTube 埋め込みで再生可（oEmbed 200 で外部再生を確認）
+- 画像: サムネイル含む2枚
+- Built With: javascript / three.js / html / css / service-worker / node.js / playwright / localstorage
+- Story: Inspiration / What it does / How we built it / Challenges / What we learned / What's next
+- 未確認: 公開ページ上に `Try it out`（repo・ライブURL）が見当たらず。本人のEdit画面では入力済みの可能性あり、要目視確認
+- 締切: 2026-10-27 06:00 JST。**提出後も締切までは `Edit hackathon submission` で編集できる**
+
+### 今後の任意作業
+
+- **ナレーション**: 間に合わなくても問題なし。後日うのっちchで公開する方針（本人判断 2026-10-25）。Devpost側の動画を差し替えるなら**締切前**に限る（締切後は編集不可）。
+- ナレーション合成コマンドは下記「ナレーション合成の手順」を使う。
 
 ## 動画の内容（67.6秒・字幕入り・無音）
 
@@ -53,12 +69,10 @@ ffmpeg -y -i muda-rensa-demo-captioned.mp4 -i voice.m4a \
 
 提出フォームに合わせた割り当ては本人が決める。エージェントは誤字・文法の校正のみ行う。
 
-## 残り
+## 残り（任意）
 
-- ナレーション（本人の声）を動画に載せる → 最終動画
-- 動画のアップロード（YouTube限定公開 or Devpostへのファイル添付）とURL確定
-- Devpostフォーム入力・exit survey（本人）→ 提出
-- `checklist.md` の Final Review と Code Tour and App Map（学習ラップアップ）
+- **ナレーション**（本人の声）を動画に載せる → 後日でよい。うのっちchで公開予定。Devpostの動画を差し替える場合のみ締切前（2026-10-27 06:00 JST）
+- `checklist.md` の **Code Tour and App Map**（学習ラップアップ）— `devpost/app-map.html` は生成・公開済み。ツアーと振り返りは未実施
 
 ## フォーム入力用の確定値（2026-10-25 実測）
 
