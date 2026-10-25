@@ -33,6 +33,18 @@
 
 収録方法: Playwright（Chromium / 1280×720）で実プレイを録画し、字幕はページ上のオーバーレイとして同時に描画（アプリのコードは無変更）。ffmpegでH.264化。撃破まで到達、コンソールエラーなし。
 
+### ナレーション合成の手順（音声が届いたら）
+
+```bash
+# 音声（m4a/wav）を動画に載せる。映像は再エンコードしない
+ffmpeg -y -i muda-rensa-demo-captioned.mp4 -i voice.m4a \
+  -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 160k -shortest \
+  -movflags +faststart muda-rensa-final.mp4
+```
+
+事前検証済み（2026-10-25）: 67.6秒の無音AACで合成し、`h264 + aac` / 67.6秒 / faststart を確認。
+音声が67.6秒より長い場合は `-shortest` で切れるので、先に尺を合わせるか、`atempo` で調整する。
+
 ## 提出文の材料（本人の回答・原文）
 
 - 何を作ったか（一言）: 「AIとかかわる時間が多いからこそ、AIでつくったもので時間をつぶそう。」
