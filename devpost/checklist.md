@@ -48,7 +48,7 @@ Slice 2・3のPC機械検証は完了。保存復元と破損データの保護�
 Slice 1の機械検証は2026-10-05に完了。19件pass、ビルド成功、実ブラウザでハイパー放出・通常5分設定での撃破・早送り時計による続行を確認。本人が「初プレイ楽しめました。いい感じですね」と報告し、序盤操作確認も完了。`verification.md` に証拠を記録。
 
 - [x] Early usable behavior explored — Slice 1。2026-10-05に本人の肯定的な初プレイ報告を受領。修正要望なし。
-- [ ] Final kick-the-tires exploration and feedback completed — 保存とオフラインを含む一連のプレイを本人が試す。PCとスマホ実機の証拠は分ける。
+- [x] Final kick-the-tires exploration and feedback completed — 保存とオフラインを含む一連のプレイを本人が試す。PCとスマホ実機の証拠は分ける。iPhone 16実機でホーム画面版キャッシュ完了、機内モードでの起動・操作・中断再開・撃破を確認済み（2026-10-12 20:xx JST）。
 
 ## Final Review
 
