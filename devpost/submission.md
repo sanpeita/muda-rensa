@@ -59,3 +59,20 @@ ffmpeg -y -i muda-rensa-demo-captioned.mp4 -i voice.m4a \
 - 動画のアップロード（YouTube限定公開 or Devpostへのファイル添付）とURL確定
 - Devpostフォーム入力・exit survey（本人）→ 提出
 - `checklist.md` の Final Review と Code Tour and App Map（学習ラップアップ）
+
+## フォーム入力用の確定値（2026-10-25 実測）
+
+- 動画欄は**URL貼り付けのみ**（ファイルアップロード不可・本人確認）
+- Project name: 上限60字 → `ムダ連鎖 / Muda Rensa`（17字）
+- Elevator pitch: 上限200字 → 下記（70字）
+
+```text
+AIと関わる時間が多いからこそ、AIでつくったもので時間をつぶそう。電車待ちの5分を潰したい人のための、オフラインで遊べるカジュアルゲーム。
+```
+
+| 欄 | 値 |
+|---|---|
+| GitHub repo URL | `https://github.com/sanpeita/muda-rensa` |
+| Try it out | `https://muda-rensa-iphone-test.netlify.app/` |
+| Video demo URL | YouTube等への**限定公開**アップロード後のURL（Release直リンク `https://github.com/sanpeita/muda-rensa/releases/download/v0.1.0/muda-rensa-demo-captioned.mp4` は動画欄の検証を通らない可能性が高い） |
+| Thumbnail | `output/thumbnail.png`（1200×800 / 3:2 / 500KB未満） |
